@@ -4,7 +4,7 @@ import { Label } from "../label.jsx";
 import { Input } from "../input.jsx";
 import { RadioGroup } from "../radio-group.jsx";
 import { Button } from "../button.jsx";
-import { Link } from "react-router-dom";
+import { Link,  useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [input, setInput] = useState({
@@ -16,9 +16,26 @@ const Login = () => {
   const changeEventHandler = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
+
+  const navigate = useNavigate();
   const submitHandler = async (e) => {
+   
     e.preventDefault();
-    console.log(input);
+    try{
+        const res = await axios.post(`${USER_API_END_POINT}/login`,input,{
+            header:{
+                "Content-Type":"application/json",
+            },
+            withCredentials:true,
+        });
+        if(res.data.success){
+            navigate("/")
+            toast.success(res.data.message);
+        }
+    }catch(error){
+        console.log(error)
+        toast.error(error.responce.data.message);
+    }
   };
   return (
     <div>

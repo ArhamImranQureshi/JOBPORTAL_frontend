@@ -4,8 +4,10 @@ import { Label } from "../label.jsx";
 import { Input } from "../input.jsx";
 import { RadioGroup } from "../radio-group.jsx";
 import { Button } from "../button.jsx";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { USER_API_END_POINT } from "@/utils/constant";
+import { toast } from "sonner";
 
 const Signup = () => {
   const [input, setInput] = useState({
@@ -23,11 +25,38 @@ const Signup = () => {
   const changeFileHandler = (e) => {
     setInput({ ...input, file: e.target.files[0] });
   };
+
+  const navigate = useNavigate();
   const submitHandler = async (e) => {
-    try{
+    e.preventDefault();
+    /// input data ko form data mein convert krne ke lie yh use ho rha hai
+    const formData = new FormData();
+    formData.append("fullname", input.fullname);
+    formData.append("email", input.email);
+    formData.append("phoneNumber", input.phoneNumber);
+    formData.append("password", input.password);
+    formData.append("role", input.role);
+    if (input.file) {
+      formData.append("file", input.file);
+    }
+    // sign up ke bad login page pe le jae ga
+    
+    try {
+      const res = await axios.post(`${USER_API_END_POINT}/register`, formData, {
+        header: {
+          "Content-Type": "multipart/form-data",
+        },
+        withCredentials: true,
+      });
+      /// agar responce sahi aata hai tou yh bottom right mien msg aaye ga
 
-    }catch(error){
-
+      if (res.data.success) {
+        navigate("/login");
+        toast.success(res.data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.responce.data.message);
     }
   };
   return (
@@ -73,7 +102,7 @@ const Signup = () => {
             <Label>Password</Label>
             <Input
               type="password"
-                name="password"
+              name="password"
               value={input.password}
               onChange={changeEventHandler}
               placeholder="*********"
