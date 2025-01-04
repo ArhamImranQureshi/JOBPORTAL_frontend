@@ -1,14 +1,10 @@
-import { useState } from 'react'
 import './App.css'
-import { Button } from './components/ui/button'
+import Navbar from './components/ui/shared/Navbar'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-    <h1>Job portal</h1>
-      <Button/>
+    <Navbar/>
     </>
   )
 }
