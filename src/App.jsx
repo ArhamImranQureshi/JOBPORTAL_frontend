@@ -1,15 +1,15 @@
-import Navbar from './components/ui/shared/Navbar'
+
 import Login from './components/ui/auth/Login'
 import Signup from './components/ui/auth/Signup'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Home from './components/ui/Home'
+import Home from './components/Home.jsx'
 const appRouter= createBrowserRouter([
   {
     path:'/',
     element:<Home/>
   },
   {
-    path:'/LOGIN',
+    path:'/login',
     element:<Login/>
   },
   {
