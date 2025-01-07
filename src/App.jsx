@@ -4,6 +4,7 @@ import Signup from './components/ui/auth/Signup'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Home from './components/Home.jsx'
 import Jobs from './components/Jobs'
+import Browse from './components/Browse'
 const appRouter= createBrowserRouter([
   {
     path:'/',
@@ -20,6 +21,10 @@ const appRouter= createBrowserRouter([
   {
     path:'/jobs',
     element:<Jobs/>
+  },
+  {
+    path:'/browse',
+    element:<Browse/>
   },
 ])
 function App() {
