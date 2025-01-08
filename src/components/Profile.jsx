@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "./ui/shared/Navbar";
 import { Avatar, AvatarImage } from "./ui/avatar";
 import { Button } from "./ui/button";
@@ -10,6 +10,7 @@ import AppliedJobTable from "./ui/AppliedJobTable";
 const isResume = true;
 const skills = [ "React", "Node", "Express", "MongoDB", "Firebase","JavaScript", "TypeScript", "HTML", "CSS", "SASS", "Tailwind"]
 const Profile = () => {
+  const [open,setOpen] = useState(false);
   return (
     <div>
       <Navbar />

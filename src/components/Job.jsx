@@ -4,10 +4,9 @@ import { Bookmark } from "lucide-react";
 import { Avatar, AvatarImage } from "./ui/avatar.jsx";
 import { Badge } from "./ui/badge.jsx";
 import { useNavigate } from "react-router-dom";
-
-const navigate = useNavigate();
-const jobid = '1'
 const Job = () => {
+  const navigate = useNavigate()
+  const jobId = '1'
   return (
     <div className="p-5 rounded-md shadow-xl bg-white border border-gray-100">
       <div className="flex items-center justify-between">
@@ -37,7 +36,7 @@ const Job = () => {
             <Badge className='text-[#7209b7] font-bold'>60000 Pkr</Badge>
         </div>
         <div className="flex items-center gap-4 mt-4">
-        <Button variant='outline' onClick={()=>{navigate(`/description/${jobid}`)}}>Details</Button>
+        <Button variant='outline' onClick={()=>navigate(`/description/${jobId}`)}>Details</Button>
         <Button className='bg-[#7209b7] text-white'>Save For Later</Button>
         </div>
     </div>
