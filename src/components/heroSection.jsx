@@ -14,7 +14,7 @@ const HeroSection = () => {
           Search, Apply & <br /> Get Your{" "}
           <span className="text-[#6A38C2]">Dream Job</span>
         </h1>
-        <p>IQJobs is the best option for Job Hunt in Pakistan</p>
+        <p>IQ TalentHunt is the best option for Job Hunt in Pakistan </p>
         <div className="flex w-[40%] shadow-lg border border-gray-200 pl-3 rounded-full items-center gap-4 mx-auto">
           <input
             type="text"
