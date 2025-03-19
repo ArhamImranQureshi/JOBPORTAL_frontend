@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 const isResume = true;
 const skills = [ "React", "Node", "Express", "MongoDB", "Firebase","JavaScript", "TypeScript", "HTML", "CSS", "SASS", "Tailwind"]
 const Profile = () => {
+
   const [open,setOpen] = useState(false);
   const {user} = useSelector(store=>store.auth);
 
@@ -50,7 +51,7 @@ const Profile = () => {
             <div className="flex items-center gap-1 my-2">
             {
                 user?.profile?.skills.length !== 0 ? user?.profile?.skills.map((skill,index)=>(
-                    <Badge key={index}>{skill}</Badge>
+                    <Badge key={index}>{skills}</Badge>
                 )) : <span>No Skills</span>
             }
             </div>

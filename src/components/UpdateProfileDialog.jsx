@@ -20,14 +20,14 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
   const { user } = useSelector((store) => store.auth);
 
   const [input, setInput] = useState({
-    fullname: user?.fullname,
-    email: user?.email,
-    phoneNumber: user?.phoneNumber,
-    bio: user?.profile?.bio,
-    skills: user?.profile?.skills.map((skill) => skill),
-    file: user?.profile?.resume,
+    fullname: user?.fullname || "",
+    email: user?.email || "",
+    phoneNumber: user?.phoneNumber || "",
+    bio: user?.profile?.bio || "",
+    skills: user?.profile?.skills.map((skill) => skill) || "",
+    file: user?.profile?.resume || "",
   });
-
+  const dispatch = useDispatch();
   const changeEventHandler = (e) => {
     setInput({
       ...input,
@@ -45,7 +45,6 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
     if (input.file) {
       formData.append("resume", input.file);
     }
-    const dispatch = useDispatch();
     try {
       const res = await axios.post(
         `${USER_API_END_POINT}/profile/update`,
